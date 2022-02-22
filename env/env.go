@@ -7,6 +7,9 @@ package env
 
 import (
 	"fmt"
+	"github.com/goworkeryyt/configs/profile"
+	"github.com/spf13/viper"
+	"log"
 	"strings"
 )
 
@@ -30,6 +33,10 @@ var (
 )
 
 var _ Environment = (*environment)(nil)
+
+const (
+	ConfigFile = "./resources/active.yaml"
+)
 
 // Environment 环境配置
 type Environment interface {
@@ -69,6 +76,26 @@ func (e *environment) t() {}
 
 // Active 当前配置的env
 func Active() Environment {
+	if active.Value() == "" {
+		activeFile := LoadActiveFile()
+		if activeFile != nil {
+			env := activeFile.Active
+			switch strings.ToLower(strings.TrimSpace(env)) {
+			case "dev":
+				active = dev
+			case "fat":
+				active = fat
+			case "uat":
+				active = uat
+			case "pro":
+				active = pro
+			default:
+				active = fat
+				log.Println("找不到对应的环境，默认使用 fat")
+			}
+			return active
+		}
+	}
 	return active
 }
 
@@ -85,8 +112,29 @@ func SetActive(env string) string {
 		active = pro
 	default:
 		active = fat
-		fmt.Println("Warning: 'env' cannot be found, or it is illegal. The default 'fat' will be used.")
+		log.Println("找不到对应的环境，默认使用 fat")
 	}
 	return env
 }
 
+// LoadActiveFile 读取默认配置文件 active.yaml
+func LoadActiveFile(path ...string) *profile.Profiles {
+	v := viper.New()
+	if len(path) == 0 {
+		v.SetConfigFile(ConfigFile)
+		log.Println("读取默认配置文件:", ConfigFile)
+	} else {
+		v.SetConfigFile(path[0])
+		log.Println("读取指定配置文件:", path[0])
+	}
+	err := v.ReadInConfig()
+	if err != nil {
+		panic(fmt.Errorf("严重错误的配置文件 : %s \n", err))
+	}
+	var p profile.Profiles
+	if err := v.Unmarshal(&p); err != nil {
+		log.Println("读取active配置文件异常:", err)
+		return nil
+	}
+	return &p
+}
