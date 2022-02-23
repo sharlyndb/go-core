@@ -18,7 +18,7 @@ import (
 // Zap 初始化zap logger
 func Zap() (logger *zap.Logger){
 	// 先判断目录是否存在
-	if ok, _ := logDirectorExists(global.CONFIG.Zap.Director); !ok { // 判断是否有Director文件夹
+	if ok, _ := logDirectorExists(global.CONFIG.Zap.Director); !ok {
 		fmt.Printf("create %v directory\n", global.CONFIG.Zap.Director)
 		_ = os.Mkdir(global.CONFIG.Zap.Director, os.ModePerm)
 	}
@@ -68,13 +68,17 @@ func getEncoderConfig() (config zapcore.EncoderConfig) {
 		EncodeCaller:   zapcore.FullCallerEncoder,
 	}
 	switch {
-	case global.CONFIG.Zap.EncodeLevel == "LowercaseLevelEncoder": // 小写编码器(默认)
+	case global.CONFIG.Zap.EncodeLevel == "LowercaseLevelEncoder":
+		// 小写编码器(默认)
 		config.EncodeLevel = zapcore.LowercaseLevelEncoder
-	case global.CONFIG.Zap.EncodeLevel == "LowercaseColorLevelEncoder": // 小写编码器带颜色
+	case global.CONFIG.Zap.EncodeLevel == "LowercaseColorLevelEncoder":
+		// 小写编码器带颜色
 		config.EncodeLevel = zapcore.LowercaseColorLevelEncoder
-	case global.CONFIG.Zap.EncodeLevel == "CapitalLevelEncoder": // 大写编码器
+	case global.CONFIG.Zap.EncodeLevel == "CapitalLevelEncoder":
+		// 大写编码器
 		config.EncodeLevel = zapcore.CapitalLevelEncoder
-	case global.CONFIG.Zap.EncodeLevel == "CapitalColorLevelEncoder": // 大写编码器带颜色
+	case global.CONFIG.Zap.EncodeLevel == "CapitalColorLevelEncoder":
+		// 大写编码器带颜色
 		config.EncodeLevel = zapcore.CapitalColorLevelEncoder
 	default:
 		config.EncodeLevel = zapcore.LowercaseLevelEncoder
@@ -92,7 +96,8 @@ func getEncoder() zapcore.Encoder {
 
 // getEncoderCore 获取Encoder的zapcore.Core
 func getEncoderCore(fileName string, level zapcore.LevelEnabler) (core zapcore.Core) {
-	writer := WriteSyncer(fileName) // 使用lumberjack对日志进行分割
+	// 使用lumberjack对日志进行分割
+	writer := WriteSyncer(fileName)
 	return zapcore.NewCore(getEncoder(), writer, level)
 }
 
