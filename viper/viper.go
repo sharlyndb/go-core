@@ -6,8 +6,8 @@
 package viper
 
 import (
-	"fmt"
 	"github.com/fsnotify/fsnotify"
+	"github.com/goworkeryyt/go-config"
 	"github.com/goworkeryyt/go-core/global"
 	"github.com/spf13/viper"
 	"log"
@@ -29,10 +29,10 @@ const (
 func Viper(path ...string) *viper.Viper {
 	v := viper.New()
 	if len(path) == 0 {
-		fname := global.ENV.Value() + "_config"
+		fname := global.ENV.Value() + ConfigSuffix
 		v.SetConfigName(fname)
-		v.SetConfigType("yaml")
-		v.AddConfigPath("./resources")
+		v.SetConfigType(ConfigType)
+		v.AddConfigPath(ConfigPath)
 		log.Println("读取配置文件:", fname)
 	} else {
 		v.SetConfigFile(path[0])
@@ -40,16 +40,25 @@ func Viper(path ...string) *viper.Viper {
 	}
 	err := v.ReadInConfig()
 	if err != nil {
-		panic(fmt.Errorf("严重错误的配置文件 : %s \n", err))
+		log.Fatalf("读取配置文件异常 : %s \n", err)
+		return nil
 	}
+	global.CONFIG = &goconfig.Config{}
+	if err := v.Unmarshal(global.CONFIG); err != nil {
+		log.Fatalf("读取配置文件异常 : %s \n", err)
+		return nil
+	}
+	global.CONFIG.Viper = v
 	v.WatchConfig()
 	v.OnConfigChange(func(e fsnotify.Event) {
 		log.Println("配置文件内容发生改变:", e.Name)
-		if err := v.Unmarshal(&global.CONFIGS); err != nil {
-			log.Println("读取配置文件异常:", err)
+		if err := v.Unmarshal(global.CONFIG); err != nil {
+			log.Fatalf("读取配置文件异常 : %s \n", err)
+			return
 		}
-		global.CONFIGS.Viper = v
+		global.CONFIG.Viper = v
 	})
-	global.CONFIGS.Viper = v
+	global.CONFIG.Viper = v
 	return v
 }
+
