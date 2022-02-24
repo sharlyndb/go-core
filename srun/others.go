@@ -18,10 +18,10 @@ import (
 	"go.uber.org/zap"
 )
 
-// RunHttpServer Linux环境下启动服务
+// RunHttpServer Linux，unix等环境下启动服务
 func RunHttpServer(r *gin.Engine) {
 	address := fmt.Sprintf(":%d", global.CONFIG.Server.Addr)
-	s := initUnixServer(address, r)
+	s := initServer(address, r)
 	// 保证文本顺序输出
 	time.Sleep(20 * time.Microsecond)
 	global.LOG.Info("server run success on ", zap.String("address", address))
@@ -32,7 +32,7 @@ func RunHttpServer(r *gin.Engine) {
 }
 
 // 初始化服务
-func initUnixServer(address string, router *gin.Engine) server {
+func initServer(address string, router *gin.Engine) server {
 	s := endless.NewServer(address, router)
 	s.ReadHeaderTimeout = 10 * time.Second
 	s.WriteTimeout = 10 * time.Second
