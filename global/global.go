@@ -20,7 +20,7 @@ import (
 var (
 
 	// ENV 设置环境
-	ENV = env.Active()
+	ENV  env.Environment
 
 	// DB 数据库
 	DB *gorm.DB
@@ -31,7 +31,7 @@ var (
 	// MQTT 客户端
 	MQTT *mqtt.Client
 
-	// CONFIGS 全局系统配置
+	// CONFIG 全局系统配置
 	CONFIG *goconfig.Config
 
 	// VP 通过 viper 读取的yaml配置文件
