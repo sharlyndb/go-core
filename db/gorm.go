@@ -38,6 +38,9 @@ func Gorm() *gorm.DB {
 // @return: *gorm.DB
 func GormMySQL() *gorm.DB {
 	config := global.CONFIG.MySQL
+	if config.Host == "" {
+		return nil
+	}
 	dsn := config.Username + ":" + config.Password + "@tcp(" + config.Host + ":" + config.Port + ")/" + config.Dbname + "?" + config.Config
 	mysqlConfig := mysql.Config{
 		DSN:                       dsn,   // DSN data source name
@@ -49,7 +52,6 @@ func GormMySQL() *gorm.DB {
 	}
 	if db, err := gorm.Open(mysql.New(mysqlConfig), gormConfig(config.LogLevel)); err != nil {
 		global.LOG.Error("MySQL启动异常", zap.Any("err", err))
-		os.Exit(0)
 		return nil
 	} else {
 		sqlDB, _ := db.DB()
