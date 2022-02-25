@@ -13,9 +13,7 @@ require (
 require (
 	github.com/casbin/casbin/v2 v2.41.0
 	github.com/fsnotify/fsnotify v1.5.1
-	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.7.7
-	github.com/goworkeryyt/go-config v0.0.0-20220224033636-234cd817b200
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	gorm.io/driver/mysql v1.3.2
 	gorm.io/driver/postgres v1.3.1
@@ -31,6 +29,8 @@ require (
 require (
 	github.com/asim/go-micro/plugins/registry/consul/v3 v3.7.0
 	github.com/asim/go-micro/v3 v3.7.1
+	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
+	github.com/goworkeryyt/go-config v0.0.0-20220225041912-43979b46856f
 )
 
 require (

@@ -388,8 +388,10 @@ github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB7
 github.com/gorilla/websocket v1.4.1/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/gorilla/websocket v1.4.2 h1:+/TMaTYc4QFitKJxsQ7Yye35DkWvkdLcvGKqM+x0Ufc=
 github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
-github.com/goworkeryyt/go-config v0.0.0-20220224033636-234cd817b200 h1:w+7ufNh398FyjGxnGxjZCfpCCJMmuv4QYIgu9mHjy7Q=
-github.com/goworkeryyt/go-config v0.0.0-20220224033636-234cd817b200/go.mod h1:ZEWQUsUGAIFx/OTq17+1FA2DFiJw1MBnBTEmXwk/dck=
+github.com/goworkeryyt/go-config v0.0.0-20220225035032-3797f12551b9 h1:Z4XKHXmGVE06n9sKiQVBAeczIJo6MIHYtVwWhsc6KQg=
+github.com/goworkeryyt/go-config v0.0.0-20220225035032-3797f12551b9/go.mod h1:ZEWQUsUGAIFx/OTq17+1FA2DFiJw1MBnBTEmXwk/dck=
+github.com/goworkeryyt/go-config v0.0.0-20220225041912-43979b46856f h1:jMoFomeQiCSXzCtIanRqiKC7JxgzjbQQbYXzRHcnw00=
+github.com/goworkeryyt/go-config v0.0.0-20220225041912-43979b46856f/go.mod h1:ZEWQUsUGAIFx/OTq17+1FA2DFiJw1MBnBTEmXwk/dck=
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.0/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgfV/d3M/q6VIi02HzZEHgUlZvzk=
 github.com/grpc-ecosystem/grpc-gateway v1.8.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
