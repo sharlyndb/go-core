@@ -7,6 +7,7 @@ package db
 
 import (
 	"os"
+	"time"
 
 	"github.com/goworkeryyt/go-core/global"
 	"go.uber.org/zap"
@@ -57,6 +58,12 @@ func GormMySQL() *gorm.DB {
 		sqlDB, _ := db.DB()
 		sqlDB.SetMaxIdleConns(config.MaxIdleConns)
 		sqlDB.SetMaxOpenConns(config.MaxOpenConns)
+		if config.ConnMaxIdleTime > 0 {
+			sqlDB.SetConnMaxIdleTime(time.Duration(config.ConnMaxIdleTime) * time.Second)
+		}
+		if config.ConnMaxLifetime > 0 {
+			sqlDB.SetConnMaxLifetime(time.Duration(config.ConnMaxLifetime) * time.Second)
+		}
 		return db
 	}
 }
@@ -102,6 +109,12 @@ func GormPostgreSQL() *gorm.DB {
 		sqlDB, _ := db.DB()
 		sqlDB.SetMaxIdleConns(config.MaxIdleConns)
 		sqlDB.SetMaxOpenConns(config.MaxOpenConns)
+		if config.ConnMaxIdleTime > 0 {
+			sqlDB.SetConnMaxIdleTime(time.Duration(config.ConnMaxIdleTime) * time.Second)
+		}
+		if config.ConnMaxLifetime > 0 {
+			sqlDB.SetConnMaxLifetime(time.Duration(config.ConnMaxLifetime) * time.Second)
+		}
 		return db
 	}
 }
@@ -118,6 +131,12 @@ func GormSQLite() *gorm.DB {
 		sqlDB, _ := db.DB()
 		sqlDB.SetMaxIdleConns(config.MaxIdleConns)
 		sqlDB.SetMaxOpenConns(config.MaxOpenConns)
+		if config.ConnMaxIdleTime > 0 {
+			sqlDB.SetConnMaxIdleTime(time.Duration(config.ConnMaxIdleTime) * time.Second)
+		}
+		if config.ConnMaxLifetime > 0 {
+			sqlDB.SetConnMaxLifetime(time.Duration(config.ConnMaxLifetime) * time.Second)
+		}
 		return db
 	}
 }
