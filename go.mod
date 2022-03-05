@@ -30,7 +30,9 @@ require (
 	github.com/asim/go-micro/plugins/registry/consul/v3 v3.7.0
 	github.com/asim/go-micro/v3 v3.7.1
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
-	github.com/goworkeryyt/go-config v0.0.0-20220225041912-43979b46856f
+	github.com/goworkeryyt/go-config v0.0.0-20220228091301-316c2934c5ba
+	github.com/goworkeryyt/go-toolbox v0.0.0-20220305033707-dab25998ab55
+
 )
 
 require (
@@ -56,7 +58,7 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/uuid v1.2.0 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/hashicorp/consul/api v1.12.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
