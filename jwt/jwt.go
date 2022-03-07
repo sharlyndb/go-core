@@ -165,7 +165,7 @@ func (j *JWT) RefreshToken(tokenString string) (string, error) {
 	}
 	if claims, ok := token.Claims.(*CustomClaims); ok && token.Valid {
 		jwt.TimeFunc = time.Now
-		claims.StandardClaims.ExpiresAt = time.Now().Unix() + 60*60*24*7
+		claims.StandardClaims.ExpiresAt = time.Now().Unix() + global.CONFIG.JWT.ExpiresTime
 		return j.CreateToken(*claims)
 	}
 	return "", TokenInvalid
