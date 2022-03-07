@@ -31,6 +31,7 @@ require (
 	github.com/asim/go-micro/v3 v3.7.1
 	github.com/casbin/gorm-adapter/v3 v3.5.0
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
+	github.com/golang-jwt/jwt/v4 v4.3.0
 	github.com/goworkeryyt/go-config v0.0.0-20220228091301-316c2934c5ba
 	github.com/goworkeryyt/go-toolbox v0.0.0-20220305033707-dab25998ab55
 
