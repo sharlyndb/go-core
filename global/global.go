@@ -40,6 +40,6 @@ var (
 	// LOG 全局日志
 	LOG *zap.Logger
 
-	// CSBEF 实施者
-	CSBEF *casbin.Enforcer
+	// CSBEF casbin实施者
+	CSBEF casbin.IEnforcer
 )
