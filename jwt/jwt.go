@@ -51,6 +51,14 @@ func GetSignKey() string {
 	return key
 }
 
+// RegisteredClaims expiresAt 过期时间单位秒
+func RegisteredClaims(issuer string,expiresAt int64) jwt.RegisteredClaims{
+	return jwt.RegisteredClaims{
+		Issuer: issuer,
+		ExpiresAt: jwt.NewNumericDate(time.Unix(expiresAt,0)),
+	}
+}
+
 // CreateToken 生成 token
 func (j *JWT) CreateToken(claims CustomClaims) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -165,7 +173,7 @@ func (j *JWT) RefreshToken(tokenString string) (string, error) {
 	}
 	if claims, ok := token.Claims.(*CustomClaims); ok && token.Valid {
 		jwt.TimeFunc = time.Now
-		claims.StandardClaims.ExpiresAt = time.Now().Unix() + global.CONFIG.JWT.ExpiresTime
+		claims.RegisteredClaims.ExpiresAt = jwt.NewNumericDate(time.Unix(time.Now().Unix() + global.CONFIG.JWT.ExpiresTime,0))
 		return j.CreateToken(*claims)
 	}
 	return "", TokenInvalid
