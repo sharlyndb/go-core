@@ -29,6 +29,7 @@ require (
 require (
 	github.com/asim/go-micro/plugins/registry/consul/v3 v3.7.0
 	github.com/asim/go-micro/v3 v3.7.1
+	github.com/casbin/gorm-adapter/v3 v3.5.0
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/goworkeryyt/go-config v0.0.0-20220228091301-316c2934c5ba
 	github.com/goworkeryyt/go-toolbox v0.0.0-20220305033707-dab25998ab55
@@ -44,6 +45,7 @@ require (
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
+	github.com/denisenkom/go-mssqldb v0.11.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
@@ -55,6 +57,7 @@ require (
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/golang-sql/civil v0.0.0-20190719163853-cb61b32ac6fe // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -122,4 +125,6 @@ require (
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gorm.io/driver/sqlserver v1.2.1 // indirect
+	gorm.io/plugin/dbresolver v1.1.0 // indirect
 )
